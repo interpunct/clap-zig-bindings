@@ -28,7 +28,7 @@ pub const Info = extern struct {
 
     /// id identifies a port and must be stable.
     /// id may overlap between input and output ports.
-    id: clap.ClapId,
+    id: clap.Id,
     /// displayable name
     name: [clap.name_capacity]u8,
 
@@ -43,7 +43,7 @@ pub const Info = extern struct {
 
     /// in-place processing: allow the host to use the same buffer for input
     /// output. if supported set the id. if not supported set to `.invalid_id`
-    in_place_pair: clap.ClapId,
+    in_place_pair: clap.Id,
 };
 
 pub const Plugin = extern struct {

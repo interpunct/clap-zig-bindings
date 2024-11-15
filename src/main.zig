@@ -9,7 +9,10 @@ pub const Host = @import("host.zig").Host;
 pub const Plugin = @import("plugin.zig").Plugin;
 pub const Process = @import("process.zig").Process;
 pub const AudioBuffer = @import("audio_buffer.zig").AudioBuffer;
-pub const Event = @import("events.zig").Event;
+pub const events = @import("events.zig");
+
+pub const IStream = @import("stream.zig").IStream;
+pub const OStream = @import("stream.zig").OStream;
 
 /// the current clap version
 pub const clap_version = Version{ .major = 1, .minor = 2, .revision = 2 };
@@ -20,7 +23,7 @@ pub const name_capacity = 256;
 /// a capcity for describing a file path on the disk.
 pub const path_capacity = 1024;
 
-pub const ClapId = enum(u32) {
+pub const Id = enum(u32) {
     invalid_id = @import("std").math.maxInt(u32),
     _,
 };
@@ -56,17 +59,6 @@ pub const UniversalPluginId = extern struct {
     /// vst3: pring the id as a standard UUID
     ///   eg: "123e4567-e89b-12d3-a456-426614174000"
     id: [*:0]const u8,
-};
-
-pub const IStream = extern struct {
-    context: *anyopaque,
-    /// returns the number of bytes read. 0 indicates end of file and -1 a read error.
-    read: *const fn (stream: *const IStream, buffer: *anyopaque, size: u64) callconv(.C) i64,
-};
-
-pub const OStream = extern struct {
-    context: *anyopaque,
-    write: *const fn (stream: *const OStream, bufer: *const anyopaque, size: u64) callconv(.C) i64,
 };
 
 pub const extensions = @import("extensions.zig");

@@ -27,7 +27,7 @@ pub const Info = extern struct {
 
     /// identifies a port and must be stable.
     /// id may overlap between input and output ports.
-    id: clap.ClapId,
+    id: clap.Id,
     supported_dialects: Dialects,
     preferred_dialect: Dialect,
     /// displayable name

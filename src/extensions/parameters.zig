@@ -25,7 +25,7 @@ pub const Info = extern struct {
     };
 
     /// stable parameter identifier. it must never change.
-    id: clap.ClapId,
+    id: clap.Id,
     flags: Flags,
     /// value is optional and set by the plugin. its purpose is to provide fast
     /// access to the plugin parameter object by caching its pointer.
@@ -57,17 +57,17 @@ pub const Info = extern struct {
 pub const Plugin = extern struct {
     count: *const fn (plugin: *const clap.Plugin) callconv(.C) u32,
     getInfo: *const fn (plugin: *const clap.Plugin, index: u32, info: *Info) callconv(.C) bool,
-    getValue: *const fn (plugin: *const clap.Plugin, id: clap.ClapId, out_value: *f64) callconv(.C) bool,
+    getValue: *const fn (plugin: *const clap.Plugin, id: clap.Id, out_value: *f64) callconv(.C) bool,
     valueToText: *const fn (
         plugin: *const clap.Plugin,
-        id: clap.ClapId,
+        id: clap.Id,
         value: f64,
         out_buffer: [*]u8,
         out_buffer_capacity: u32,
     ) callconv(.C) bool,
     textToValue: *const fn (
         plugin: *const clap.Plugin,
-        id: clap.ClapId,
+        id: clap.Id,
         value_text: [*:0]const u8,
         out_value: *f64,
     ) callconv(.C) bool,
@@ -95,6 +95,6 @@ pub const Host = extern struct {
     };
 
     rescan: *const fn (host: *const clap.Host, flags: RescanFlags) callconv(.C) void,
-    clear: *const fn (host: *const clap.Host, id: clap.ClapId, flags: ClearFlags) callconv(.C) void,
+    clear: *const fn (host: *const clap.Host, id: clap.Id, flags: ClearFlags) callconv(.C) void,
     requestFlush: *const fn (host: *const clap.Host) callconv(.C) void,
 };
