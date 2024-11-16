@@ -1,4 +1,4 @@
-const Event = @import("events.zig").Event;
+const events = @import("events.zig");
 const AudioBuffer = @import("audio_buffer.zig").AudioBuffer;
 
 pub const Process = extern struct {
@@ -28,13 +28,13 @@ pub const Process = extern struct {
     frames_count: u32,
     /// time info at sample 0. if null then this is a free
     /// running host. no transport events will be provided
-    transport: ?*const Event.Transport,
+    transport: ?*const events.Transport,
     audio_inputs: [*]const AudioBuffer,
     audio_outputs: [*]AudioBuffer,
     audio_inputs_count: u32,
     audio_outputs_count: u32,
     /// input event list. the host will deliver these sorted in sample order.
-    in_events: *const Event.InputEvents,
+    in_events: *const events.InputEvents,
     /// output event list. the plugin must insert events in sample sorted order.
-    out_events: *const Event.OutputEvents,
+    out_events: *const events.OutputEvents,
 };
