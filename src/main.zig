@@ -2,8 +2,8 @@ pub const Version = @import("version.zig").Version;
 pub const Entry = @import("entry.zig").Entry;
 pub const clap_entry = @import("entry.zig").clap_entry;
 
-pub const PluginFactory = @import("plugin_factory.zig").PluginFactory;
-// TODO: const preset_discovery = @import("preset_discovery.zig");
+pub const PluginFactory = @import("factory/plugin.zig").Factory;
+pub const preset_discovery = @import("factory/preset_discovery.zig");
 
 pub const Host = @import("host.zig").Host;
 pub const Plugin = @import("plugin.zig").Plugin;
@@ -13,6 +13,8 @@ pub const events = @import("events.zig");
 
 pub const IStream = @import("stream.zig").IStream;
 pub const OStream = @import("stream.zig").OStream;
+
+pub const extensions = @import("extensions.zig");
 
 /// the current clap version
 pub const clap_version = Version{ .major = 1, .minor = 2, .revision = 2 };
@@ -60,5 +62,3 @@ pub const UniversalPluginId = extern struct {
     ///   eg: "123e4567-e89b-12d3-a456-426614174000"
     id: [*:0]const u8,
 };
-
-pub const extensions = @import("extensions.zig");
