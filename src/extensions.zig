@@ -24,5 +24,5 @@ pub const tail = @import("extensions/tail.zig");
 pub const thread_check = @import("extensions/thread_check.zig");
 pub const thread_pool = @import("extensions/thread_pool.zig");
 pub const timer_support = @import("extensions/timer_support.zig");
-pub const track_info = @import("extensions/track_info.zig"); // TODO
+pub const track_info = @import("extensions/track_info.zig");
 pub const voice_info = @import("extensions/voice_info.zig"); // TODO
