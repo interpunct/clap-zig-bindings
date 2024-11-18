@@ -1,5 +1,5 @@
-const Plugin = @import("plugin.zig").Plugin;
-const Host = @import("host.zig").Host;
+const Plugin = @import("../plugin.zig").Plugin;
+const Host = @import("../host.zig").Host;
 /// every method must be thread safe.
 /// it is very important to be able to scan the plugin as quickly as possible.
 /// the host may change the factory's content.
