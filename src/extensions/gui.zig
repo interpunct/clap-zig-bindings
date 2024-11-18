@@ -59,7 +59,7 @@ pub const window_api = struct {
 pub const Window = extern struct {
     /// one of `window_api`
     api: [*:0]const u8,
-    data: union {
+    data: extern union {
         cocoa: *anyopaque,
         x11: c_ulong,
         win32: *anyopaque,

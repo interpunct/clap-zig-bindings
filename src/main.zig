@@ -1,6 +1,6 @@
 pub const Version = @import("version.zig").Version;
 pub const Entry = @import("entry.zig").Entry;
-pub const clap_entry = @import("entry.zig").clap_entry;
+pub extern const clap_entry: Entry;
 
 pub const PluginFactory = @import("factory/plugin.zig").Factory;
 pub const preset_discovery = @import("factory/preset_discovery.zig");
@@ -62,3 +62,7 @@ pub const UniversalPluginId = extern struct {
     ///   eg: "123e4567-e89b-12d3-a456-426614174000"
     id: [*:0]const u8,
 };
+
+test {
+    @import("std").testing.refAllDeclsRecursive(@This());
+}

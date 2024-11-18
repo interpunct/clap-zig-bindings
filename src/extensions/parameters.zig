@@ -73,8 +73,8 @@ pub const Plugin = extern struct {
     ) callconv(.C) bool,
     flush: *const fn (
         plugin: *const clap.Plugin,
-        in: *const clap.event.InputEvents,
-        out: *const clap.event.OutputEvents,
+        in: *const clap.events.InputEvents,
+        out: *const clap.events.OutputEvents,
     ) callconv(.C) void,
 };
 

@@ -17,5 +17,5 @@ pub const Plugin = extern struct {
     /// return true if the plugin must process in real time
     hasHardRealtimeRequirement: *const fn (plugin: *const clap.Plugin) callconv(.C) bool,
     /// return true if the rendering mode could be applied
-    set: *const fn (plugin: *const clap.Plugin, mode: Mode) bool,
+    set: *const fn (plugin: *const clap.Plugin, mode: Mode) callconv(.C) bool,
 };

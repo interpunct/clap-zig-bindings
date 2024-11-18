@@ -126,7 +126,7 @@ pub const Factory = extern struct {
     pub const id = "clap.preset-discovery-factory/2";
 
     count: *const fn (factory: *const Factory) callconv(.C) u32,
-    getDescriptor: *const fn (factory: *const Factory, index: u32) ?*const Provider.Descriptor,
+    getDescriptor: *const fn (factory: *const Factory, index: u32) callconv(.C) ?*const Provider.Descriptor,
     create: *const fn (
         factory: *const Factory,
         indexer: *const Indexer,

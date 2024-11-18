@@ -7,6 +7,3 @@ pub const Entry = extern struct {
     /// returned pointer must not be freed by the caller. this function must be thread safe.
     getFactory: *const fn (factory_id: [*:0]const u8) callconv(.C) ?*const anyopaque,
 };
-
-/// entry point
-pub extern const clap_entry: Entry;
