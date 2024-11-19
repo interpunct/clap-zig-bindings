@@ -1,0 +1,11 @@
+image: alpine/latest
+secrets:
+  - 4ef6b04a-43af-482f-9fea-8b1130162111
+environment:
+  REPO: clap-zig-bindings
+  GH_USER: interpunct
+tasks:
+  - push-to-github: |
+      cd ~/"${REPO}"
+      git config --global credential.helper store
+      git push --mirror "https://github.com/${GH_USER}/${REPO}"
