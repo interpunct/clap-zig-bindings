@@ -48,6 +48,6 @@ promise that it is quick and easy to learn and set up.
 
 [clap-zig-bindings]: https://sr.ht/~interpunct/clap-zig-bindings/
 [CLAP]: https://cleveraudio.org
-[my public inbox] mailto:~interpunct/public-inbox@lists.sr.ht
+[my public inbox]: mailto:~interpunct/public-inbox@lists.sr.ht
 [sourcehut docs]: https://man.sr.ht/git.sr.ht/send-email.md
 
