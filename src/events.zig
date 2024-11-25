@@ -2,45 +2,73 @@ const clap = @import("main.zig");
 const BeatTime = clap.BeatTime;
 const SecTime = clap.SecTime;
 
-pub const core_space_id = 0;
+pub const SpaceId = enum(u16) { _ };
+pub const NoteId = enum(i32) { unspecified = -1, _ };
+pub const PortIndex = enum(i16) { unspecified = -1, _ };
+pub const Channel = enum(i16) { unspecified = -1, _ };
+pub const Key = enum(i16) { unspecified = -1, _ };
+
+pub const core_space_id: SpaceId = @enumFromInt(0);
 
 pub const Header = extern struct {
     pub const Type = enum(u16) {
+        /// uses `Note`
         note_on = 0,
+        /// uses `Note`
         note_off = 1,
+        /// uses `Note`
         note_choke = 2,
+        /// uses `Note`
         note_end = 3,
+        /// uses `NoteExpression`
         note_expression = 4,
+        /// uses `ParamValue`
         param_value = 5,
+        /// uses `ParamMod`
         param_mod = 6,
+        /// uses `ParamGesture`
         param_gesture_begin = 7,
+        /// uses `ParamGesture`
         param_gesture_end = 8,
+        /// uses `Transport`
         transport = 9,
+        /// uses `Midi`
         midi = 10,
+        /// uses `MidiSysex`
         midi_sysex = 11,
+        /// uses `Midi2`
         midi2 = 12,
         _,
     };
 
     pub const Flags = packed struct(u32) {
+        /// a live user event, ie a user turning
+        /// a knob or playing a key.
         is_live: bool = false,
+        /// indicate that the event should not be recorded. ie
+        /// parameter is changing due to midi cc, because the
+        /// if the host records the automation and the midi cc
+        /// there will be a conflict.
         dont_record: bool = false,
         _: u30 = 0,
     };
 
+    /// event size, including the header, eg: `@sizeOf(Note)`
     size: u32,
+    /// sample offset within the buffer of this event.
     sample_offset: u32,
-    space_id: u16,
+    /// event space, see the event_registry extension
+    space_id: SpaceId,
     type: Type,
     flags: Flags,
 };
 
 pub const Note = extern struct {
     header: Header,
-    note_id: i32,
-    port_index: i16,
-    channel: i16,
-    key: i16,
+    note_id: NoteId,
+    port_index: PortIndex,
+    channel: Channel,
+    key: Key,
     velocity: f64,
 };
 
@@ -57,10 +85,10 @@ pub const NoteExpression = extern struct {
 
     header: Header,
     expression_id: Id,
-    note_id: i32,
-    port_index: i16,
-    channel: i16,
-    key: i16,
+    note_id: NoteId,
+    port_index: PortIndex,
+    channel: Channel,
+    key: Key,
     value: f64,
 };
 
@@ -68,10 +96,10 @@ pub const ParamValue = extern struct {
     header: Header,
     param_id: clap.Id,
     cookie: *anyopaque,
-    note_id: i32,
-    port_index: i16,
-    channel: i16,
-    key: i16,
+    note_id: NoteId,
+    port_index: PortIndex,
+    channel: Channel,
+    key: Key,
     value: f64,
 };
 
@@ -79,10 +107,10 @@ pub const ParamMod = extern struct {
     header: Header,
     param_id: clap.Id,
     cookie: ?*anyopaque,
-    note_id: i32,
-    port_index: i16,
-    channel: i16,
-    key: i16,
+    note_id: NoteId,
+    port_index: PortIndex,
+    channel: Channel,
+    key: Key,
     value: f64,
 };
 

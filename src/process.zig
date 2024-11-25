@@ -16,14 +16,15 @@ pub const Process = extern struct {
         sleep = 4,
     };
 
+    /// if not unavailable must be non-negative
+    pub const SteadyTime = enum(i64) { unavailable = -1, _ };
+
     /// a steady sample time counter.
     /// this field can be used to claculate the sleep duration between two process calls.
     /// this value may be specific to this plugin instance and have no relation to what
-    /// other plugin instances may receive.
-    ///
-    /// set to -1 if not available, otherwise the value must be >= 0, and must be increased
-    /// by at least `frames_count` for the next call to process.
-    steady_time: i64,
+    /// other plugin instances may receive. must be increased by at least `frames_count`
+    ///  for the next call to process.
+    steady_time: SteadyTime,
     /// number of frames to process.
     frames_count: u32,
     /// time info at sample 0. if null then this is a free

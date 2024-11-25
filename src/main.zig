@@ -16,8 +16,8 @@ pub const OStream = @import("stream.zig").OStream;
 
 pub const extensions = @import("extensions.zig");
 
-/// the current clap version
-pub const clap_version = Version{ .major = 1, .minor = 2, .revision = 2 };
+/// the clap ABI version
+pub const version = Version{ .major = 1, .minor = 2, .revision = 2 };
 /// string capacity for names that can be displayed to the user
 pub const name_capacity = 256;
 /// string capacity for describing a path, like a parameter in a module
@@ -25,10 +25,8 @@ pub const name_capacity = 256;
 /// a capcity for describing a file path on the disk.
 pub const path_capacity = 1024;
 
-pub const Id = enum(u32) {
-    invalid_id = @import("std").math.maxInt(u32),
-    _,
-};
+/// generic ID type
+pub const Id = enum(u32) { invalid_id = @import("std").math.maxInt(u32), _ };
 
 pub const BeatTime = enum(i64) { _ };
 pub const SecTime = enum(i64) { _ };
