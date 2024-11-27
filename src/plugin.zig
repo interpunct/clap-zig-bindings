@@ -10,22 +10,22 @@ pub const Plugin = extern struct {
         /// eg: "Diva"
         name: [*:0]const u8,
         /// eg: "u-he"
-        vendor: [*:0]const u8,
+        vendor: ?[*:0]const u8,
         /// eg: "https://u-he.com/products/diva/"
-        url: [*:0]const u8,
+        url: ?[*:0]const u8,
         /// eg: "https://dl.u-he.com/manuals/plugins/diva/Diva-user-guide.pdf"
-        manual_url: [*:0]const u8,
+        manual_url: ?[*:0]const u8,
         /// eg: "https://u-he.com/support/"
-        support_url: [*:0]const u8,
+        support_url: ?[*:0]const u8,
         /// arbitrary string, useful for hosts to be able
         /// to understand and compare to version strings.
         /// a regex-like expression which is likely to be
         /// understood by most hosts:
         /// MAJOR(.MINOR(.REVISION)?)?( (Alpha|Beta) XREV)?
         /// eg: "1.4.4"
-        version: [*:0]const u8,
+        version: ?[*:0]const u8,
         /// eg: "The spirit of analogue"
-        description: [*:0]const u8,
+        description: ?[*:0]const u8,
         /// arbitrary list of keywords. they can be used by the host indexer
         /// to classify the plugin. for standard features see `Plugin.features`.
         features: [*:null]const ?[*:0]const u8,
