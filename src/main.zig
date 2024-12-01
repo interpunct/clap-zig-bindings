@@ -14,7 +14,7 @@ pub const events = @import("events.zig");
 pub const IStream = @import("stream.zig").IStream;
 pub const OStream = @import("stream.zig").OStream;
 
-pub const extensions = @import("extensions.zig");
+pub const ext = @import("ext.zig");
 
 /// the clap ABI version
 pub const version = Version{ .major = 1, .minor = 2, .revision = 2 };
