@@ -175,10 +175,12 @@ pub const Midi2 = extern struct {
 pub const InputEvents = extern struct {
     context: *anyopaque,
     size: *const fn (list: *const InputEvents) callconv(.C) u32,
+    /// the returned event belongs to the list, do not free it!
     get: *const fn (list: *const InputEvents, index: u32) callconv(.C) *const Header,
 };
 
 pub const OutputEvents = extern struct {
     context: *anyopaque,
+    /// pushes a copy of `event`. returns false if the event could not be pushed.
     tryPush: *const fn (list: *const OutputEvents, event: *const Header) callconv(.C) bool,
 };

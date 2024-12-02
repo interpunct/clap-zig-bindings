@@ -1,11 +1,23 @@
 pub const IStream = extern struct {
+    /// number of bytes read, end of file, or an unknown error.
+    pub const Result = enum(i64) { read_error = -1, end_of_file = 0, _ };
+
     context: *anyopaque,
-    /// returns the number of bytes read. 0 indicates end of file and -1 a read error.
-    read: *const fn (stream: *const IStream, buffer: *anyopaque, size: u64) callconv(.C) i64,
+    read: *const fn (
+        stream: *const IStream,
+        buffer: *anyopaque,
+        size: u64,
+    ) callconv(.C) Result,
 };
 
 pub const OStream = extern struct {
+    /// number of bytes written or an unknown error.
+    pub const Result = enum(i64) { write_error = -1, _ };
+
     context: *anyopaque,
-    /// returns the number of bytes written. -1 indicates a write error
-    write: *const fn (stream: *const OStream, bufer: *const anyopaque, size: u64) callconv(.C) i64,
+    write: *const fn (
+        stream: *const OStream,
+        bufer: *const anyopaque,
+        size: u64,
+    ) callconv(.C) Result,
 };

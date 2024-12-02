@@ -28,8 +28,23 @@ pub const path_capacity = 1024;
 /// generic ID type
 pub const Id = enum(u32) { invalid_id = @import("std").math.maxInt(u32), _ };
 
-pub const BeatTime = enum(i64) { _ };
-pub const SecTime = enum(i64) { _ };
+/// fixed point representation of beat time
+pub const BeatTime = enum(i64) {
+    _,
+
+    pub fn fromBeats(beats: f64) BeatTime {
+        return @enumFromInt(@as(i64, @intFromFloat(@round(beats * (1 << 31)))));
+    }
+};
+
+/// fixed point representation of seconds time
+pub const SecTime = enum(i64) {
+    _,
+
+    pub fn fromSecs(seconds: f64) SecTime {
+        return @enumFromInt(@as(i64, @intFromFloat(@round(seconds * (1 << 31)))));
+    }
+};
 
 pub const Timestamp = enum(u64) { unknown = 0, _ };
 

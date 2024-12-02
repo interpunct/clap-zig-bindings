@@ -20,7 +20,7 @@ pub fn build(b: *std.Build) void {
     });
     const run_tests = b.addRunArtifact(tests);
     test_step.dependOn(&run_tests.step);
-    b.default_step.dependOn(test_step);
+    b.default_step = test_step;
 
     const doc_step = b.step("doc", "Generate autodocs");
     const docs_test = b.addObject(.{
