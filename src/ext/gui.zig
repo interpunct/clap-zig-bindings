@@ -83,7 +83,7 @@ pub const Plugin = extern struct {
     /// returns true if the plugin has a preferred api. the host has no obligation to honor the plugin's preference,
     /// this is just a hint. `api` should be explicitly assigned as a pinter to one of the `window_api.*` constants,
     /// not copied.
-    getPreferredApi: *const fn (plugin: *const clap.Plugin, api: *[*:0]const u8, is_floating: bool) callconv(.C) bool,
+    getPreferredApi: *const fn (plugin: *const clap.Plugin, api: *[*:0]const u8, is_floating: *bool) callconv(.C) bool,
     /// create and allocate all resources needed for the gui.
     /// if `is_floating` is true then the window will not be managed by the host. the plugin can set its window
     /// to stay above the parent window (see `setTransient`). `api` may be null or blank for floating windows.
