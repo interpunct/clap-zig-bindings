@@ -95,7 +95,7 @@ pub const NoteExpression = extern struct {
 pub const ParamValue = extern struct {
     header: Header,
     param_id: clap.Id,
-    cookie: *anyopaque,
+    cookie: ?*anyopaque,
     note_id: NoteId,
     port_index: PortIndex,
     channel: Channel,
