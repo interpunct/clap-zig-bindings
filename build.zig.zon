@@ -1,7 +1,8 @@
 .{
-    .name = "clap-bindings",
-    .version = "1.0.2",
-    .minimum_zig_version = "0.13.0",
+    .name = .clap_bindings,
+    .version = "1.0.3",
+    .fingerprint = 0x6e96014e0d1c32f5,
+    .minimum_zig_version = "0.14.1",
     .paths = .{
         "build.zig",
         "build.zig.zon",
